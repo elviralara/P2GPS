@@ -4,7 +4,7 @@ services:
   # Por ejemplo, mongo debe estar antes de order.
   # mongo: mismo nombre usado en el run.sh de Order y application.properties. # Se resuelve en una dirección IP.
   mongo:
-    image: tusuarioDocker/p2gps:db
+    image: elviralara/p2gps:db
     deploy:
       replicas: 1 # para escalabilidad del servicio.
       resources:
@@ -19,7 +19,7 @@ services:
     volumes:
       - "db-data:/data/db" # para guardar en local los cambios en el contenedor
   order:
-    image: tusuarioDocker/p2gps:order
+    image: elviralara/p2gps:order
     depends_on:
       - "mongo" # le pasamos al servicio order la IP del servicio mongo
     deploy:
@@ -33,7 +33,7 @@ services:
     ports:
       - "8080:8080"
   web:
-    image: tusuarioDocker/p2gps:web
+    image: elviralara/p2gps:web
     deploy:
       replicas: 1
       resources:
